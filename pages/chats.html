@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Dialekto's SCHOOL</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="../assets/img/favicon.jpeg"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts and icons -->
+    <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["../assets/css/fonts.min.css"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="../assets/css/kaiadmin.min.css" />
+    <link rel="stylesheet" href="../assets/css/login.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar" data-background-color="white">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="white">
+            <a href="index.html" class="logo">
+              <img
+                src="../assets/img/logo.png"
+                alt="navbar brand"
+                class="navbar-brand"
+                width="200"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- End Logo Header -->
+        </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#dashboard" aria-expanded="false">
+                  <i class="fas fa-home"></i>
+                  <p>Dashboard</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="dashboard">
+                  <ul class="nav nav-collapse">
+                    <li><a href="../demo1/index.html"><span class="sub-item">Dashboard 1</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-section">
+                <span class="sidebar-mini-icon"><i class="fa fa-ellipsis-h"></i></span>
+                <h4 class="text-section">Professeurs</h4>
+              </li>
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-prof">
+                  <i class="fas fa-layer-group"></i>
+                  <p>Mes Classes</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-prof">
+                  <ul class="nav nav-collapse">
+                    <li><a href="teacher/classes.html"><span class="sub-item">Classes</span></a></li>
+                    <li><a href="teacher/courses.html"><span class="sub-item">Cours</span></a></li>
+                    <li><a href="student/notes.html"><span class="sub-item">Notes</span></a></li>
+                    <li><a href="teacher/étudiants.html"><span class="sub-item">Étudiants</span></a></li>
+                    <li><a href="teacher/notifications.html"><span class="sub-item">Notifications</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-section">
+                <span class="sidebar-mini-icon"><i class="fa fa-ellipsis-h"></i></span>
+                <h4 class="text-section">ADMINISTRATION</h4>
+              </li>
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-admin-classes">
+                  <i class="fas fa-layer-group"></i>
+                  <p>Classes</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-admin-classes">
+                  <ul class="nav nav-collapse">
+                    <li><a href="teacher/classes.html"><span class="sub-item">Classes</span></a></li>
+                    <li><a href="teacher/courses.html"><span class="sub-item">Cours</span></a></li>
+                    <li><a href="annonce.html"><span class="sub-item">Annonces</span></a></li>
+                    <li><a href="chats.html"><span class="sub-item">Chat</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-quiz">
+                  <i class="fas fa-question-circle"></i>
+                  <p>Quiz</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-quiz">
+                  <ul class="nav nav-collapse">
+                    <li><a href="categories.html"><span class="sub-item">Catégories</span></a></li>
+                    <li><a href="questions.html"><span class="sub-item">Questions</span></a></li>
+                    <li><a href="reponses.html"><span class="sub-item">Réponse</span></a></li>
+                    <li><a href="tests.html"><span class="sub-item">Test</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-users">
+                  <i class="fas fa-user-cog"></i>
+                  <p>Gestion utilisateurs</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-users">
+                  <ul class="nav nav-collapse">
+                    <li><a href="users.html"><span class="sub-item">Utilisateurs</span></a></li>
+                    <li><a href="roles.html"><span class="sub-item">Rôles</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-settings">
+                  <i class="fas fa-cogs"></i>
+                  <p>Paramètres généraux</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-settings">
+                  <ul class="nav nav-collapse">
+                    <li><a href="#"><span class="sub-item">Pack</span></a></li>
+                    <li><a href="niveau.html"><span class="sub-item">Niveau</span></a></li>
+                  </ul>
+                </div>
+              </li>
+              
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="white">
+              <a href="index.html" class="logo">
+                <img
+                  src="../assets/img/favicon.jpeg"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                  height="20"
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          placeholder="Search ..."
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="messageDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                  <ul
+                    class="dropdown-menu messages-notif-box animated fadeIn"
+                    aria-labelledby="messageDropdown"
+                  >
+                    <li>
+                      <div
+                        class="dropdown-title d-flex justify-content-between align-items-center"
+                      >
+                        Messages
+                        <a href="#" class="small">Mark all as read</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="message-notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="../assets/img/jm_denis.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Jimmy Denis</span>
+                              <span class="block"> How are you ? </span>
+                              <span class="time">5 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="../assets/img/chadengle.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Chad</span>
+                              <span class="block"> Ok, Thanks ! </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="../assets/img/mlane.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Jhon Doe</span>
+                              <span class="block">
+                                Ready for the meeting today...
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="../assets/img/talha.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Talha</span>
+                              <span class="block"> Hi, Apa Kabar ? </span>
+                              <span class="time">17 minutes ago</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);"
+                        >See all messages<i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="notifDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-bell"></i>
+                    <span class="notification">4</span>
+                  </a>
+                  <ul
+                    class="dropdown-menu notif-box animated fadeIn"
+                    aria-labelledby="notifDropdown"
+                  >
+                    <li>
+                      <div class="dropdown-title">
+                        You have 4 new notification
+                      </div>
+                    </li>
+                    <li>
+                      <div class="notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-icon notif-primary">
+                              <i class="fa fa-user-plus"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block"> New user registered </span>
+                              <span class="time">5 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-icon notif-success">
+                              <i class="fa fa-comment"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block">
+                                Rahmad commented on Admin
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <i class="fas fa-user" style="display: flex; align-items: center; justify-content: center; font-size: 1rem;"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block">
+                                Reza send messages to you
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-icon notif-danger">
+                              <i class="fa fa-heart"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block"> Farrah liked Admin </span>
+                              <span class="time">17 minutes ago</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);"
+                        >See all notifications<i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-layer-group"></i>
+                  </a>
+                  <div class="dropdown-menu quick-actions animated fadeIn">
+                    <div class="quick-actions-header">
+                      <span class="title mb-1">Quick Actions</span>
+                      <span class="subtitle op-7">Shortcuts</span>
+                    </div>
+                    <div class="quick-actions-scroll scrollbar-outer">
+                      <div class="quick-actions-items">
+                        <div class="row m-0">
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-danger rounded-circle">
+                                <i class="far fa-calendar-alt"></i>
+                              </div>
+                              <span class="text">Calendar</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-warning rounded-circle"
+                              >
+                                <i class="fas fa-map"></i>
+                              </div>
+                              <span class="text">Maps</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-info rounded-circle">
+                                <i class="fas fa-file-excel"></i>
+                              </div>
+                              <span class="text">Reports</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-success rounded-circle"
+                              >
+                                <i class="fas fa-envelope"></i>
+                              </div>
+                              <span class="text">Emails</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-primary rounded-circle"
+                              >
+                                <i class="fas fa-file-invoice-dollar"></i>
+                              </div>
+                              <span class="text">Invoice</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-secondary rounded-circle"
+                              >
+                                <i class="fas fa-credit-card"></i>
+                              </div>
+                              <span class="text">Payments</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <div class="avatar-sm">
+                      <i class="fas fa-user avatar-img rounded-circle" style="display: flex; align-items: center; justify-content: center; font-size: 1rem;"></i>
+                    </div>
+                    <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold" id="userDisplayName">Utilisateur</span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box">
+                          <div class="avatar-lg">
+                            <i class="fas fa-user avatar-img rounded" style="display: flex; align-items: center; justify-content: center; font-size: 1.5rem;"></i>
+                          </div>
+                          <div class="u-text">
+                            <h4 id="userFullName">Utilisateur</h4>
+                            <p class="text-muted" id="userEmail">email@example.com</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="logoutBtn">
+                          <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+        <div class="container">
+          <div class="page-inner">
+            
+            <div class="page-header">
+              <h3 class="fw-bold mb-3">Classes</h3>
+              <ul class="breadcrumbs mb-3">
+                <li class="nav-home">
+                  <a href="#">
+                    <i class="icon-home"></i>
+                  </a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Mes Classes</a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Classes</a>
+                </li>
+              </ul>
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Chat</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <div class="container mt-4" id="chat-container">
+                        <div class="row border rounded shadow" style="height: 600px; overflow: hidden;">
+                      
+                          <!-- Liste des contacts / discussions -->
+                          <div class="col-md-4 border-end p-0 bg-light" id="chat-list" style="overflow-y: auto;">
+                            <div class="list-group list-group-flush">
+                              <!-- Les utilisateurs / discussions viendront ici dynamiquement -->
+                              <button class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#add-conversation">
+                                <i class="fa fa-plus-circle"></i> Ajouter une conversation
+                              </button>
+                              
+                              <!-- Liste des conversations -->
+                              <div id="conversations-list">
+                                <!-- Conversation Étudiants -->
+                                <div class="conversation-item p-3 border-bottom bg-white" data-conversation="Étudiants" onclick="selectConversation('Étudiants', 'Étudiants')">
+                                  <div class="d-flex align-items-center">
+                                    <div class="avatar-sm me-3" style="flex-shrink: 0;">
+                                      <div class="avatar-img rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-users text-white"></i>
+                                      </div>
+                                    </div>
+                                    <div class="flex-grow-1" style="min-width: 0; overflow: hidden;">
+                                      <h6 class="mb-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Étudiants</h6>
+                                      <small class="text-muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">Dernier message...</small>
+                                    </div>
+                                    <div class="badge bg-success rounded-pill">2</div>
+                                  </div>
+                                </div>
+                                
+                                <!-- Conversation Prof -->
+                                <div class="conversation-item p-3 border-bottom bg-white" data-conversation="prof" onclick="selectConversation('prof', 'Prof')">
+                                  <div class="d-flex align-items-center">
+                                    <div class="avatar-sm me-3" style="flex-shrink: 0;">
+                                      <div class="avatar-img rounded-circle bg-success d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-chalkboard-teacher text-white"></i>
+                                      </div>
+                                    </div>
+                                    <div class="flex-grow-1" style="min-width: 0; overflow: hidden;">
+                                      <h6 class="mb-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Prof</h6>
+                                      <small class="text-muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">Dernier message...</small>
+                                    </div>
+                                    <div class="badge bg-warning rounded-pill">1</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Zone de discussion -->
+                          <div class="col-md-8 d-flex flex-column p-0">
+                            
+                            <!-- Entête -->
+                            <div class="border-bottom p-2 bg-white d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center">
+                                <div class="avatar-sm me-2" style="flex-shrink: 0;">
+                                  <div class="avatar-img rounded-circle bg-primary d-flex align-items-center justify-content-center" id="chat-avatar">
+                                    <i class="fas fa-user text-white"></i>
+                                  </div>
+                                </div>
+                                <div>
+                                  <strong id="chat-username">Sélectionner une conversation</strong>
+                                  <small class="text-muted d-block" id="chat-status">En ligne</small>
+                                </div>
+                              </div>
+                              <div class="dropdown">
+                                <button class="btn btn-link" data-bs-toggle="dropdown">
+                                  <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#"><i class="fas fa-search"></i> Rechercher</a></li>
+                                  <li><a class="dropdown-item" href="#"><i class="fas fa-phone"></i> Appeler</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-ban"></i> Bloquer</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                      
+                            <!-- Messages -->
+                            <div class="flex-grow-1 p-3" id="chat-messages" style="overflow-y: auto;">
+                              <div class="text-center text-muted mt-5" id="no-conversation-selected">
+                                <i class="fas fa-comments fa-3x mb-3"></i>
+                                <p>Sélectionnez une conversation pour commencer à discuter</p>
+                              </div>
+                              <!-- Messages viendront ici dynamiquement -->
+                            </div>
+                      
+                            <!-- Zone de saisie -->
+                            <div class="border-top p-2 bg-white">
+                              <div class="input-group">
+                                <input type="text" id="chat-input" class="form-control" placeholder="Écrire un message...">
+                                <button class="btn btn-primary" id="send-btn">Envoyer</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom template | don't include it in your project! -->
+
+      <!-- End Custom template -->
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <!-- <script src="../assets/js/forms/auth/login.js"></script> -->
+    <!-- jQuery Scrollbar -->
+    <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="../assets/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="../assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="../assets/js/plugin/jsvectormap/world.js"></script>
+
+    <!-- Google Maps Plugin -->
+    <script src="../assets/js/plugin/gmaps/gmaps.js"></script>
+    
+
+
+    <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="../assets/js/kaiadmin.min.js"></script>
+
+
+    <script src="../assets/js/API/Quiz/crudCategorie.js"></script>
+    <script src="../assets/js/API/Quiz/getCategories.js"></script>
+    <script src="../assets/js/API/auth/logout.js"></script>
+    <script src="../../assets/js/API/auth/profile-loader.js"></script>
+    <script src="../assets/js/API/base.js"></script>
+
+    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
+    <script src="../assets/js/setting-demo2.js"></script>
+        <!-- Modal: Création d'une classe -->
+             <!-- Modal: Ajouter une conversation -->
+    <div class="modal fade" id="add-conversation" tabindex="-1" aria-labelledby="addConversationLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addConversationLabel">Sélectionner une conversation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <!-- Étudiants -->
+              <div class="col-md-6 mb-3">
+                <div class="card h-100 conversation-option" onclick="selectConversationFromModal('Étudiants', 'Étudiants')">
+                  <div class="card-body text-center">
+                    <div class="avatar-lg mx-auto mb-3" style="width: 80px; height: 80px; flex-shrink: 0;">
+                      <div class="avatar-img rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                        <i class="fas fa-users text-white"></i>
+                      </div>
+                    </div>
+                    <h6 class="card-title">Étudiants</h6>
+                    <p class="card-text text-muted">Passer un message au étudiants</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Prof -->
+              <div class="col-md-6 mb-3">
+                <div class="card h-100 conversation-option" onclick="selectConversationFromModal('prof', 'Prof')">
+                  <div class="card-body text-center">
+                    <div class="avatar-lg mx-auto mb-3" style="width: 80px; height: 80px; flex-shrink: 0;">
+                      <div class="avatar-img rounded-circle bg-success d-flex align-items-center justify-content-center">
+                        <i class="fas fa-chalkboard-teacher text-white"></i>
+                      </div>
+                    </div>
+                    <h6 class="card-title">Prof</h6>
+                    <p class="card-text text-muted">Discuter avec votre professeur</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Script pour le chat -->
+    <script>
+      let currentConversation = null;
+      
+      // Sélectionner une conversation depuis la liste
+      function selectConversation(conversationId, conversationName) {
+        currentConversation = conversationId;
+        
+        // Mettre à jour l'interface
+        document.getElementById('chat-username').textContent = conversationName;
+        document.getElementById('no-conversation-selected').style.display = 'none';
+        
+        // Mettre à jour les avatars selon la conversation
+        const chatAvatar = document.getElementById('chat-avatar');
+        if (conversationId === 'Étudiants') {
+          chatAvatar.className = 'avatar-img rounded-circle bg-primary d-flex align-items-center justify-content-center';
+          chatAvatar.style.width = '40px';
+          chatAvatar.style.height = '40px';
+          chatAvatar.style.minWidth = '40px';
+          chatAvatar.style.minHeight = '40px';
+          chatAvatar.innerHTML = '<i class="fas fa-users text-white"></i>';
+        } else if (conversationId === 'prof') {
+          chatAvatar.className = 'avatar-img rounded-circle bg-success d-flex align-items-center justify-content-center';
+          chatAvatar.style.width = '40px';
+          chatAvatar.style.height = '40px';
+          chatAvatar.style.minWidth = '40px';
+          chatAvatar.style.minHeight = '40px';
+          chatAvatar.innerHTML = '<i class="fas fa-chalkboard-teacher text-white"></i>';
+        }
+        
+        // Mettre à jour la sélection visuelle
+        document.querySelectorAll('.conversation-item').forEach(item => {
+          item.classList.remove('active', 'bg-light');
+        });
+        document.querySelector(`[data-conversation="${conversationId}"]`).classList.add('active', 'bg-light');
+        
+        // Charger les messages de la conversation
+        loadMessages(conversationId);
+      }
+      
+      // Sélectionner une conversation depuis le modal
+      function selectConversationFromModal(conversationId, conversationName) {
+        selectConversation(conversationId, conversationName);
+        
+        // Fermer le modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('add-conversation'));
+        modal.hide();
+      }
+      
+      // Charger les messages d'une conversation
+      function loadMessages(conversationId) {
+        const messagesContainer = document.getElementById('chat-messages');
+        
+        // Simuler des messages (à remplacer par vos appels API)
+        const messages = getSampleMessages(conversationId);
+        
+        messagesContainer.innerHTML = '';
+        messages.forEach(message => {
+          const messageElement = createMessageElement(message);
+          messagesContainer.appendChild(messageElement);
+        });
+        
+        // Scroll vers le bas
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+      
+      // Créer un élément de message
+      function createMessageElement(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `mb-3 ${message.isOwn ? 'text-end' : ''}`;
+        
+        messageDiv.innerHTML = `
+          <div class="d-inline-block ${message.isOwn ? 'bg-primary text-white' : 'bg-light'} rounded p-2" style="max-width: 70%;">
+            <div class="message-content">${message.content}</div>
+            <small class="message-time ${message.isOwn ? 'text-white-50' : 'text-muted'}">${message.time}</small>
+          </div>
+        `;
+        
+        return messageDiv;
+      }
+      
+      // Messages d'exemple (à remplacer par vos données API)
+      function getSampleMessages(conversationId) {
+        if (conversationId === 'Étudiants') {
+          return [
+            { content: 'Bonjour ! Comment puis-je vous aider ?', time: '10:30', isOwn: false },
+            { content: 'J\'ai une question concernant mon inscription', time: '10:32', isOwn: true },
+            { content: 'Bien sûr, je peux vous aider avec ça', time: '10:33', isOwn: false }
+          ];
+        } else if (conversationId === 'prof') {
+          return [
+            { content: 'Salut ! Comment ça va ?', time: '09:15', isOwn: false },
+            { content: 'Très bien merci, et vous ?', time: '09:16', isOwn: true },
+            { content: 'Parfait ! Avez-vous des questions sur le cours ?', time: '09:17', isOwn: false }
+          ];
+        }
+        return [];
+      }
+      
+      // Envoyer un message
+      document.getElementById('send-btn').addEventListener('click', function() {
+        const input = document.getElementById('chat-input');
+        const message = input.value.trim();
+        
+        if (message && currentConversation) {
+          // Ajouter le message à l'interface
+          const messageElement = createMessageElement({
+            content: message,
+            time: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+            isOwn: true
+          });
+          
+          document.getElementById('chat-messages').appendChild(messageElement);
+          
+          // Vider l'input
+          input.value = '';
+          
+          // Scroll vers le bas
+          const messagesContainer = document.getElementById('chat-messages');
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          
+          // Ici vous pouvez ajouter l'appel API pour sauvegarder le message
+          // sendMessageToAPI(currentConversation, message);
+        }
+      });
+      
+      // Envoyer avec Enter
+      document.getElementById('chat-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          document.getElementById('send-btn').click();
+        }
+      });
+      
+      // Styles CSS pour les interactions
+      document.addEventListener('DOMContentLoaded', function() {
+        // Ajouter des styles pour les interactions
+        const style = document.createElement('style');
+        style.textContent = `
+          .conversation-item {
+            cursor: pointer;
+            transition: background-color 0.2s;
+          }
+          .conversation-item:hover {
+            background-color: #f8f9fa !important;
+          }
+          .conversation-item.active {
+            background-color: #e3f2fd !important;
+            border-left: 3px solid #2196f3;
+          }
+          .conversation-option {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+          }
+          .conversation-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          }
+          .message-content {
+            word-wrap: break-word;
+          }
+          
+          /* Styles responsives pour les avatars */
+          .avatar-sm {
+            flex-shrink: 0 !important;
+            width: 40px !important;
+            height: 40px !important;
+            min-width: 40px !important;
+            min-height: 40px !important;
+          }
+          
+          .avatar-sm .avatar-img.rounded-circle {
+            width: 40px !important;
+            height: 40px !important;
+            min-width: 40px !important;
+            min-height: 40px !important;
+            max-width: 40px !important;
+            max-height: 40px !important;
+            flex-shrink: 0;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+          
+          /* Empêcher le texte de déformer les avatars */
+          .conversation-item .d-flex {
+            align-items: center !important;
+          }
+          
+          .conversation-item .flex-grow-1 {
+            min-width: 0 !important;
+            overflow: hidden !important;
+            flex: 1 1 auto !important;
+          }
+          
+          .conversation-item h6 {
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            margin-bottom: 0.25rem !important;
+          }
+          
+          .conversation-item small {
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            display: block !important;
+          }
+          
+          .conversation-item .badge {
+            flex-shrink: 0 !important;
+            margin-left: auto !important;
+          }
+          
+          .avatar-sm .avatar-img.rounded-circle i {
+            font-size: 1rem !important;
+          }
+          
+          .avatar-lg .avatar-img.rounded-circle {
+            width: 80px !important;
+            height: 80px !important;
+            min-width: 80px !important;
+            min-height: 80px !important;
+            max-width: 80px !important;
+            max-height: 80px !important;
+            flex-shrink: 0;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+          
+          .avatar-lg .avatar-img.rounded-circle i {
+            font-size: 2rem !important;
+          }
+          
+          /* Responsive pour petits écrans */
+          @media (max-width: 768px) {
+            .avatar-sm {
+              width: 35px !important;
+              height: 35px !important;
+              min-width: 35px !important;
+              min-height: 35px !important;
+            }
+            
+            .avatar-sm .avatar-img.rounded-circle {
+              width: 35px !important;
+              height: 35px !important;
+              min-width: 35px !important;
+              min-height: 35px !important;
+              max-width: 35px !important;
+              max-height: 35px !important;
+            }
+            
+            .avatar-lg .avatar-img.rounded-circle {
+              width: 60px !important;
+              height: 60px !important;
+              min-width: 60px !important;
+              min-height: 60px !important;
+              max-width: 60px !important;
+              max-height: 60px !important;
+            }
+            
+            .avatar-lg .avatar-img.rounded-circle i {
+              font-size: 1.5rem !important;
+            }
+          }
+          
+          @media (max-width: 576px) {
+            .avatar-sm {
+              width: 32px !important;
+              height: 32px !important;
+              min-width: 32px !important;
+              min-height: 32px !important;
+            }
+            
+            .avatar-sm .avatar-img.rounded-circle {
+              width: 32px !important;
+              height: 32px !important;
+              min-width: 32px !important;
+              min-height: 32px !important;
+              max-width: 32px !important;
+              max-height: 32px !important;
+            }
+            
+            .avatar-sm .avatar-img.rounded-circle i {
+              font-size: 0.875rem !important;
+            }
+            
+            .avatar-lg .avatar-img.rounded-circle {
+              width: 50px !important;
+              height: 50px !important;
+              min-width: 50px !important;
+              min-height: 50px !important;
+              max-width: 50px !important;
+              max-height: 50px !important;
+            }
+            
+            .avatar-lg .avatar-img.rounded-circle i {
+              font-size: 1.25rem !important;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      });
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Dialekto's SCHOOL</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="../../assets/img/favicon.jpeg"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts and icons -->
+    <script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["../../assets/css/fonts.min.css"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="../../assets/css/kaiadmin.min.css" />
+    <link rel="stylesheet" href="../../assets/css/login.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar" data-background-color="white">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="white">
+            <a href="#" class="logo">
+              <img
+                src="../../assets/img/logo.png"
+                alt="navbar brand"
+                class="navbar-brand"
+                width="200"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>  
+          <!-- End Logo Header -->
+        </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#dashboard" aria-expanded="false">
+                  <i class="fas fa-home"></i>
+                  <p>Dashboard</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="dashboard">
+                  <ul class="nav nav-collapse">
+                    <li><a href="#"><span class="sub-item">Dashboard 1</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-section">
+                <span class="sidebar-mini-icon"><i class="fa fa-ellipsis-h"></i></span>
+                <h4 class="text-section">Professeurs</h4>
+              </li>
+
+             
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-prof">
+                  <i class="fas fa-layer-group"></i>
+                  <p>Mes Classes</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-prof">
+                  <ul class="nav nav-collapse">
+                    <li><a href="classes.html"><span class="sub-item">Classes</span></a></li>
+                    <li><a href="courses.html"><span class="sub-item">Cours</span></a></li>
+                    <li><a href="notifications.html"><span class="sub-item">Notifications</span></a></li>
+                  </ul>
+                </div>
+              </li>
+              
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="white">
+              <a href="#" class="logo">
+                <img
+                  src="../../assets/img/favicon.jpeg"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                  height="20"
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          placeholder="Search ..."
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="messageDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                  <ul
+                    class="dropdown-menu messages-notif-box animated fadeIn"
+                    aria-labelledby="messageDropdown"
+                  >
+                    <li>
+                      <div
+                        class="dropdown-title d-flex justify-content-between align-items-center"
+                      >
+                        Messages
+                        <a href="#" class="small">Mark all as read</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="message-notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="../../assets/img/jm_denis.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Jimmy Denis</span>
+                              <span class="block"> How are you ? </span>
+                              <span class="time">5 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="../../assets/img/chadengle.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Chad</span>
+                              <span class="block"> Ok, Thanks ! </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="../../assets/img/mlane.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Jhon Doe</span>
+                              <span class="block">
+                                Ready for the meeting today...
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <img
+                                src="../../assets/img/talha.jpg"
+                                alt="Img Profile"
+                              />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Talha</span>
+                              <span class="block"> Hi, Apa Kabar ? </span>
+                              <span class="time">17 minutes ago</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);"
+                        >See all messages<i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="notifDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-bell"></i>
+                    <span class="notification">4</span>
+                  </a>
+                  <ul
+                    class="dropdown-menu notif-box animated fadeIn"
+                    aria-labelledby="notifDropdown"
+                  >
+                    <li>
+                      <div class="dropdown-title">
+                        You have 4 new notification
+                      </div>
+                    </li>
+                    <li>
+                      <div class="notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-icon notif-primary">
+                              <i class="fa fa-user-plus"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block"> New user registered </span>
+                              <span class="time">5 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-icon notif-success">
+                              <i class="fa fa-comment"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block">
+                                Rahmad commented on Admin
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-img">
+                              <i class="fas fa-user" style="display: flex; align-items: center; justify-content: center; font-size: 1rem;"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block">
+                                Reza send messages to you
+                              </span>
+                              <span class="time">12 minutes ago</span>
+                            </div>
+                          </a>
+                          <a href="#">
+                            <div class="notif-icon notif-danger">
+                              <i class="fa fa-heart"></i>
+                            </div>
+                            <div class="notif-content">
+                              <span class="block"> Farrah liked Admin </span>
+                              <span class="time">17 minutes ago</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);"
+                        >See all notifications<i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-layer-group"></i>
+                  </a>
+                  <div class="dropdown-menu quick-actions animated fadeIn">
+                    <div class="quick-actions-header">
+                      <span class="title mb-1">Quick Actions</span>
+                      <span class="subtitle op-7">Shortcuts</span>
+                    </div>
+                    <div class="quick-actions-scroll scrollbar-outer">
+                      <div class="quick-actions-items">
+                        <div class="row m-0">
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-danger rounded-circle">
+                                <i class="far fa-calendar-alt"></i>
+                              </div>
+                              <span class="text">Calendar</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-warning rounded-circle"
+                              >
+                                <i class="fas fa-map"></i>
+                              </div>
+                              <span class="text">Maps</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-info rounded-circle">
+                                <i class="fas fa-file-excel"></i>
+                              </div>
+                              <span class="text">Reports</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-success rounded-circle"
+                              >
+                                <i class="fas fa-envelope"></i>
+                              </div>
+                              <span class="text">Emails</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-primary rounded-circle"
+                              >
+                                <i class="fas fa-file-invoice-dollar"></i>
+                              </div>
+                              <span class="text">Invoice</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-secondary rounded-circle"
+                              >
+                                <i class="fas fa-credit-card"></i>
+                              </div>
+                              <span class="text">Payments</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <div class="avatar-sm">
+                      <i class="fas fa-user avatar-img rounded-circle" style="display: flex; align-items: center; justify-content: center; font-size: 1rem;"></i>
+                    </div>
+                    <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold" id="userDisplayName">Utilisateur</span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box">
+                          <div class="avatar-lg">
+                            <i class="fas fa-user avatar-img rounded" style="display: flex; align-items: center; justify-content: center; font-size: 1.5rem;"></i>
+                          </div>
+                          <div class="u-text">
+                            <h4 id="userFullName">Utilisateur</h4>
+                            <p class="text-muted" id="userEmail">email@example.com</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="logoutBtn">
+                          <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+        <div class="container">
+          <div class="page-inner">
+            
+            <div class="page-header">
+              <h3 class="fw-bold mb-3">Mes Cours</h3>
+              <ul class="breadcrumbs mb-3">
+                <li class="nav-home">
+                  <a href="#">
+                    <i class="icon-home"></i>
+                  </a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Ma Classe</a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Cours</a>
+                </li>
+              </ul>
+            </div>
+            <!-- <div class="d-flex justify-content-end">
+              <div class="d-flex justify-content-end gap-2">
+                <button class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#affect-cours">
+                    <i class="fa fa-graduation-cap"></i> Affecter un cours
+                </button>
+                <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#createCoursesModal">
+                    <i class="fa fa-plus-circle"></i> Créer un cours
+                </button>
+            </div>
+            </div> -->
+            <div class="row mt-5">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Mes Cours</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table
+                        id="basic-datatables"
+                        class="display table table-striped table-hover"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Nom du cours</th>
+                            <th>Niveau</th>
+                            <th>Lien du meeting</th>
+                            <th>Cours PDF</th>
+                            <th>Date de création</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody id="cours-list">
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom template | don't include it in your project! -->
+
+      <!-- End Custom template -->
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../../assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/js/core/popper.min.js"></script>
+    <script src="../../assets/js/core/bootstrap.min.js"></script>
+    <!-- <script src="../../assets/js/forms/auth/login.js"></script> -->
+    <!-- jQuery Scrollbar -->
+    <script src="../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="../../assets/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="../../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="../../assets/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="../../assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="../../assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="../../assets/js/plugin/jsvectormap/world.js"></script>
+
+    <!-- Google Maps Plugin -->
+    <script src="../../assets/js/plugin/gmaps/gmaps.js"></script>
+    
+
+
+    <script src="../../assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="../../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="../../assets/js/kaiadmin.min.js"></script>
+    
+    <!-- Scripts pour les cours -->
+    <script src="../../assets/js/API/config.js"></script>
+    <script src="../../assets/js/API/base.js"></script>
+    <script src="../../assets/js/API/auth/profile-loader.js"></script>
+    <script src="../../assets/js/API/auth/logout.js"></script>
+    <script src="../../assets/js/API/Cours/getCours.js"></script>
+    <script src="../../assets/js/API/Cours/CreateModifyCours.js"></script>
+    <script src="../../assets/js/API/Cours/affectCours.js"></script>
+
+    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
+    <script src="../../assets/js/setting-demo2.js"></script>
+
+    <div class="modal fade" id="detail-cours" tabindex="-1" aria-labelledby="classDetailsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="classDetailsModalLabel">Détails du cours</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group">
+              <p><strong>Nom du cous :</strong> <span id="name-cours"> </span></p>
+              <p><strong>Description :</strong> <span id="descriptions-cours"> </span></p>
+              <p><strong>Niveau :</strong> <span id="level-cours"> </span></p>
+              <p><strong>Date de création :</strong> <span id="created-at"> </span></p>
+            </ul>
+            <hr>
+            <h6>Classes affectées :</h6>
+            <ul class="list-group" id="classList">
+              <!-- Les étudiants seront injectés ici -->
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="pdf-cours" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modifyCoursModal">
+              
+            </button>
+            <button type="button" id="meeting_link-cours" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#modifyCoursModal">
+              <i class="fa fa-link"></i> Lien du meet
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="affect-cours" tabindex="-1" aria-labelledby="affectCoursModal" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+          <form id="form-affect-cours">
+              <div class="modal-header">
+              <h5 class="modal-title" id="singleAffectAccountForm">Affecter des classes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+              </div>
+              <div class="modal-body">
+            
+                <div class="mb-3">
+                  <label for="cours" class="form-label" >Nom du cours</label>
+                    <select id="cours-affect" class="form-control">
+                        <option value="">Sélectionne un cours</option>
+                    </select>
+              </div>
+                <div class="mb-3">
+                    <label for="classes" class="form-label">Nom de la classe</label>
+                    <select id="classes" class="form-control">
+                        <option value="">Sélectionne un classes</option>
+                    </select>
+                </div>
+              <!-- Ajoute d'autres champs ici si nécessaire -->
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Annuler</button>
+              <button type="submit" class="btn btn-primary">Affecter</button>
+              </div>
+          </form>
+          </div>
+      </div>
+      </div>
+
+
+
+        <!-- Modal: Création d'une classe -->
+    <div class="modal fade" id="createCoursesModal" tabindex="-1" aria-labelledby="createCoursesLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <form id="form-create-cours">
+            <div class="modal-header">
+            <h5 class="modal-title" id="createCoursesLabel">Créer un cours</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+            <div class="mb-3">
+                <label for="coursNom" class="form-label">Nom du cours</label>
+                <input type="text" class="form-control" id="coursNom" name="name" placeholder="Saisir le nom de la cours" required />
+            </div>
+            <div class="mb-3">
+                <label for="meeting_link" class="form-label">Lien de la réunion</label>
+                <input type="text" class="form-control" id="meeting_link" name="meeting_link" placeholder="Saisir le lien de la réunion" required />
+            </div>
+            <div class="mb-3">
+                <label for="descriptionCours" class="form-label">Description du cours</label>
+                <textarea class="form-control" id="descriptionCours" name="descriptionCours" ></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="level" class="form-label">Niveau du cours</label>
+                <select name="level" id="level" class="form-control">
+                    <option value="">Sélectionne un niveau</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="coursPDF" class="form-label">Cours PDF</label>
+                <input type="file" class="form-control" id="coursPDF" name="coursPDF" placeholder="Sélectionner le cours" required />
+            </div>
+            <!-- Ajoute d'autres champs ici si nécessaire -->
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary">Créer</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Modal: modification d'une classe -->
+    <div class="modal fade" id="modifyCoursModal" tabindex="-1" aria-labelledby="modifyCoursesLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <form id="form-modify-cours">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modifyCoursesLabel">Modifier un cours</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+            <div class="mb-3">
+                <label for="coursNom" class="form-label">Nom du cours</label>
+                <input type="text" class="form-control" id="coursNomModify" name="coursNomModify" placeholder="Saisir le nom de la cours" required />
+            </div>
+            <div class="mb-3">
+                <label for="meeting_link" class="form-label">Lien de la réunion</label>
+                <input type="text" class="form-control" id="meeting_link-modif" name="meeting_link-modif" placeholder="Saisir le lien de la réunion" required />
+            </div>
+            <div class="mb-3">
+                <label for="descriptionCours" class="form-label">Description du cours</label>
+                <textarea class="form-control" id="descriptionCoursModify" name="descriptionCours" ></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="level" class="form-label">Niveau du cours</label>
+                <select name="modifyLevel" id="modifyLevel" class="form-control">
+                    <option value="">Sélectionne un niveau</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="coursPDFModif" class="form-label">Cours PDF</label>
+                <input type="file" class="form-control" id="coursPDFModif" name="coursPDFModif" placeholder="Sélectionner le cours" required />
+            </div>
+            <!-- Ajoute d'autres champs ici si nécessaire -->
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary">Créer</button>
+            </div>
+        </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal de confirmation de suppression -->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cette classe? Cette action est irréversible.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Supprimer</button>
+            </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

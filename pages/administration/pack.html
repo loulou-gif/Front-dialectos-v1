@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Dialekto's SCHOOL - Gestion des Packs</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="../../assets/img/favicon.jpeg"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts and icons -->
+    <script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["../../assets/css/fonts.min.css"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="../../assets/css/kaiadmin.min.css" />
+    <link rel="stylesheet" href="../../assets/css/login.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar" data-background-color="white">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="white">
+            <a href="#" class="logo">
+              <img
+                src="../../assets/img/logo.png"
+                alt="navbar brand"
+                class="navbar-brand"
+                width="200"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- End Logo Header -->
+        </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#dashboard" aria-expanded="false">
+                  <i class="fas fa-home"></i>
+                  <p>Dashboard</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="dashboard">
+                  <ul class="nav nav-collapse">
+                    <li><a href="#"><span class="sub-item">Dashboard 1</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-section">
+                <span class="sidebar-mini-icon"><i class="fa fa-ellipsis-h"></i></span>
+                <h4 class="text-section">Administrations</h4>
+              </li>
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-admin-classes">
+                  <i class="fas fa-layer-group"></i>
+                  <p>Classes</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-admin-classes">
+                  <ul class="nav nav-collapse">
+                    <li><a href="classes.html"><span class="sub-item">Classes</span></a></li>
+                    <li><a href="courses.html"><span class="sub-item">Cours</span></a></li>
+                    <li><a href="annonce.html"><span class="sub-item">Annonces</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-quiz">
+                  <i class="fas fa-question-circle"></i>
+                  <p>Quiz</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-quiz">
+                  <ul class="nav nav-collapse">
+                    <li><a href="categories.html"><span class="sub-item">Catégories</span></a></li>
+                    <li><a href="questions.html"><span class="sub-item">Questions</span></a></li>
+                    <li><a href="reponses.html"><span class="sub-item">Réponse</span></a></li>
+                    <li><a href="tests.html"><span class="sub-item">Test</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#menu-settings">
+                  <i class="fas fa-user-cog"></i>
+                  <p>Paramètres généraux</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="menu-settings">
+                  <ul class="nav nav-collapse">
+                    <li><a href="users.html"><span class="sub-item">Utilisateurs</span></a></li>
+                    <li><a href="niveau.html"><span class="sub-item">Niveau</span></a></li>
+                  </ul>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="white">
+              <a href="#" class="logo">
+                <img
+                  src="../../assets/img/favicon.jpeg"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                  height="20"
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          placeholder="Search ..."
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="messageDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                  <ul
+                    class="dropdown-menu messages-notif-box animated fadeIn"
+                    aria-labelledby="messageDropdown"
+                  >
+                    <li>
+                      <div
+                        class="dropdown-title d-flex justify-content-between align-items-center"
+                      >
+                        Messages
+                        <a href="#" class="small">Mark all as read</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="message-notif-scroll scrollbar-outer">
+                        <div class="notif-center">
+                          <a href="#">
+                            <div class="notif-img">
+                              <img src="../../assets/img/jm_denis.jpg" alt="Img Profile" />
+                            </div>
+                            <div class="notif-content">
+                              <span class="subject">Jimmy Denis</span>
+                              <span class="block"> How are you ? </span>
+                              <span class="time">5 minutes ago</span>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);">
+                        See all messages
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="notifDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-bell"></i>
+                    <span class="notification">4</span>
+                  </a>
+                  <ul
+                    class="dropdown-menu notif-box animated fadeIn"
+                    aria-labelledby="notifDropdown"
+                  >
+                    <li>
+                      <div
+                        class="dropdown-title"
+                      >
+                        You have 4 new notification
+                      </div>
+                    </li>
+                    <li>
+                      <div class="notif-center">
+                        <a href="#">
+                          <div class="notif-icon notif-primary">
+                            <i class="fa fa-user-plus"></i>
+                          </div>
+                          <div class="notif-content">
+                            <span class="block"> New user registered </span>
+                            <span class="time">5 minutes ago</span>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="see-all" href="javascript:void(0);">
+                        See all notifications
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="userDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-user avatar-img rounded" style="display: flex; align-items: center; justify-content: center; font-size: 1.5rem;"></i>
+                  </a>
+                  <ul
+                    class="dropdown-menu dropdown-user animated fadeIn"
+                    aria-labelledby="userDropdown"
+                  >
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box">
+                          <div class="avatar-lg">
+                            <i class="fas fa-user avatar-img rounded" style="display: flex; align-items: center; justify-content: center; font-size: 1.5rem;"></i>
+                          </div>
+                          <div class="u-text">
+                            <h4>Hizrian</h4>
+                            <p class="text-muted">hello@example.com</p>
+                            <a
+                              href="profile.html"
+                              class="btn btn-xs btn-secondary btn-sm"
+                            >
+                              View Profile
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                          <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a class="dropdown-item" href="#">
+                          <i class="fas fa-inbox"></i> Inbox
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                          <i class="fas fa-cog"></i> Account Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                          <i class="fas fa-power-off"></i> Logout
+                        </a>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
+        <div class="content">
+          <div class="page-inner">
+            <div class="page-header">
+              <h4 class="page-title">Gestion des Packs</h4>
+              <ul class="breadcrumbs">
+                <li class="nav-home">
+                  <a href="../index.html">
+                    <i class="flaticon-home"></i>
+                  </a>
+                </li>
+                <li class="separator">
+                  <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Administration</a>
+                </li>
+                <li class="separator">
+                  <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Packs</a>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center">
+                      <h4 class="card-title">Liste des Packs</h4>
+                      <button class="btn btn-primary btn-round ml-auto" data-bs-toggle="modal" data-bs-target="#createPackModal">
+                        <i class="fa fa-plus"></i> Ajouter un Pack
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table id="add-row" class="display table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Prix</th>
+                            <th>Durée</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Pack Débutant</td>
+                            <td>Pack pour les débutants</td>
+                            <td>50€</td>
+                            <td>3 mois</td>
+                            <td>
+                              <div class="form-button-action">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#modifyPackModal" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                  <i class="fa fa-times"></i>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Pack Intermédiaire</td>
+                            <td>Pack pour les niveaux intermédiaires</td>
+                            <td>80€</td>
+                            <td>6 mois</td>
+                            <td>
+                              <div class="form-button-action">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#modifyPackModal" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                  <i class="fa fa-times"></i>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Création d'un pack -->
+    <div class="modal fade" id="createPackModal" tabindex="-1" aria-labelledby="createPackLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="form-create-pack">
+            <div class="modal-header">
+              <h5 class="modal-title" id="createPackLabel">Créer un pack</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="packNom" class="form-label">Nom du pack</label>
+                <input type="text" class="form-control" id="packNom" name="name" placeholder="Saisir le nom du pack" required />
+              </div>
+              <div class="mb-3">
+                <label for="packDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="packDescription" name="description" placeholder="Description du pack"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="packPrix" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="packPrix" name="price" placeholder="Prix en euros" required />
+              </div>
+              <div class="mb-3">
+                <label for="packDuree" class="form-label">Durée</label>
+                <input type="text" class="form-control" id="packDuree" name="duration" placeholder="Ex: 3 mois" required />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Annuler</button>
+              <button type="submit" class="btn btn-primary">Créer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: modification d'un pack -->
+    <div class="modal fade" id="modifyPackModal" tabindex="-1" aria-labelledby="modifyPackLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="form-modify-pack">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modifyPackLabel">Modifier un pack</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="packNomModif" class="form-label">Nom du pack</label>
+                <input type="text" class="form-control" id="packNomModif" name="name" required />
+              </div>
+              <div class="mb-3">
+                <label for="packDescriptionModif" class="form-label">Description</label>
+                <textarea class="form-control" id="packDescriptionModif" name="description"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="packPrixModif" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="packPrixModif" name="price" required />
+              </div>
+              <div class="mb-3">
+                <label for="packDureeModif" class="form-label">Durée</label>
+                <input type="text" class="form-control" id="packDureeModif" name="duration" required />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Annuler</button>
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de confirmation de suppression -->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          </div>
+          <div class="modal-body">
+            Êtes-vous sûr de vouloir supprimer ce pack? Cette action est irréversible.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core JS Files -->
+    <script src="../../assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="../../assets/js/core/popper.min.js"></script>
+    <script src="../../assets/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="../../assets/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="../../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="../../assets/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="../../assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="../../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="../../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Atlantis JS -->
+    <script src="../../assets/js/atlantis.min.js"></script>
+
+    <script src="../../assets/js/API/base.js"></script>
+  </body>
+</html>
