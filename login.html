@@ -145,6 +145,12 @@
     <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap.min.js"></script>
+    
+    <!-- Configuration API - DOIT être chargé APRÈS axios et AVANT les fichiers qui utilisent CONFIG -->
+    <!-- axios est déjà chargé dans le <head> -->
+    <script src="../assets/js/API/config.js"></script>
+    
+    <!-- Scripts API - utilisent CONFIG -->
     <script src="../assets/js/API/auth/login.js"></script>
     <!-- jQuery Scrollbar -->
     <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>

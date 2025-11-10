@@ -10,7 +10,7 @@
 
 const CONFIG = {
   // URL de base de l'API
-  BASE_URL: "http://127.0.0.1:8000",
+  BASE_URL: "https://annexedb.space",
   
   // Version de l'API
   API_VERSION: "v1",
