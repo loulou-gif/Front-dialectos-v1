@@ -62,6 +62,12 @@ if (typeof CONFIG === 'undefined') {
     showMessage('Erreur de configuration. Veuillez recharger la page.', 'error');
 }
 
+// Détection email
+function isEmail(value) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+}
+
 // Gestionnaire de soumission du formulaire
 document.getElementById("login").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -74,6 +80,7 @@ document.getElementById("login").addEventListener("submit", function (e) {
 
     const username = e.target.username.value.trim();
     const password = e.target.password.value;
+    
 
     // Validation des champs
     if (!username || !password) {
@@ -87,16 +94,19 @@ document.getElementById("login").addEventListener("submit", function (e) {
     // Masquer les messages précédents
     document.getElementById('message-container').style.display = 'none';
 
+    const isEmailValue = isEmail(username);
+
+    // Construire dynamiquement les données envoyées
+    const requestData = isEmailValue
+        ? { email: username, password }
+        : { username: username, password };
     // Appel à l'API
     // Note: axios.defaults.baseURL est configuré dans config.js
     // Donc on peut utiliser directement l'endpoint ou CONFIG.BASE_URL + endpoint
     const loginUrl = CONFIG.BASE_URL + CONFIG.ENDPOINTS.AUTH.LOGIN;
     console.log('🔗 URL de connexion:', loginUrl);
     
-    axios.post(loginUrl, {
-        username: username,
-        password: password
-    })
+    axios.post(loginUrl, requestData)
     .then(res => {
         console.log('Connexion réussie:', res.data);
         
