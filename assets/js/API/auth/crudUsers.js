@@ -72,21 +72,32 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const userId = formModify.dataset.id;
 
-      const data = {
-        username: document.getElementById("usernameModify").value,
-        first_name: document.getElementById("nameModify").value,
-        last_name: document.getElementById("last_nameModify").value,
-        role: document.getElementById("roleModify").value, // rôle inclus
-        email: document.getElementById("emailModify").value,
-        password: document.getElementById("passwordModify").value,
-      };
+      const data = {};
+      
+      const username = document.getElementById("usernameModify").value;
+      const firstName = document.getElementById("nameModify").value;
+      const lastName = document.getElementById("last_nameModify").value;
+      const role = document.getElementById("roleModify").value;
+      const email = document.getElementById("emailModify").value;
+      const password = document.getElementById("passwordModify").value;
+      
+      if (username) data.username = username;
+      if (firstName) data.first_name = firstName;
+      if (lastName) data.last_name = lastName;
+      if (role) data.role = role;
+      if (email) data.email = email;
+      if (password) data.password = password;
 
-      if (!userId || Object.values(data).some(field => !field)) {
-        showNotification("error", "Tous les champs sont requis, y compris le rôle.", "Action échouée");
+      if (!userId || Object.keys(data).length === 0) {
+        showNotification(
+          "error",
+          "Veuillez modifier au moins un champ.",
+          "Action échouée"
+        );
         return;
       }
 
-      axios.put(`${API_URL}${userId}/`, data, {
+      axios.patch(`${API_URL}${userId}/`, data, {
         headers: {
           Authorization: `Token ${token}`,
           "Content-Type": "application/json",
