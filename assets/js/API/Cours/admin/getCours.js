@@ -17,6 +17,91 @@ function showNotification(type, message, title = "") {
   );
 }
 
+  function loadClassesSelectOptions() {
+    axios.get(CONFIG.BASE_URL + '/api/classes/', {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`
+      }
+    })
+    .then(response => {
+      const classeSelect = document.getElementById("classes");
+
+      // Nettoyer les options existantes sauf le premier
+      classeSelect.innerHTML = '<option value="">Sélectionne un classe</option>';
+
+      // Remplir les deux select avec les niveaux
+      response.data.results.forEach(classe => {
+        const option = new Option(classe.name, classe.id);
+        classeSelect.appendChild(option);
+
+      });
+    })
+    .catch(error => {
+      console.error("Erreur lors du chargement des classes :", error);
+      showNotification("error", "Erreur lors du chargement des classes.", "Action échouée");
+    });
+  }
+
+  loadClassesSelectOptions();
+  function loadCoursesSelectOptions() {
+    axios.get(CONFIG.BASE_URL + '/api/courses/', {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`
+      }
+    })
+    .then(response => {
+      const classeSelect = document.getElementById("cours-affect");
+
+      // Nettoyer les options existantes sauf le premier
+      classeSelect.innerHTML = '<option value="">Sélectionne un cours</option>';
+
+      // Remplir les deux select avec les niveaux
+      response.data.results.forEach(cours => {
+        const option = new Option(cours.name, cours.id);
+        classeSelect.appendChild(option);
+
+      });
+    })
+    .catch(error => {
+      console.error("Erreur lors du chargement des classes :", error);
+      showNotification("error", "Erreur lors du chargement des classes.", "Action échouée");
+    });
+  }
+
+  loadCoursesSelectOptions();
+  
+        function loadLevelsSelectOptions() {
+          axios.get(CONFIG.BASE_URL+'/api/levels/', {
+            headers: {
+              Authorization: `Token ${localStorage.getItem("token")}`
+            }
+          })
+          .then(response => {
+            const levelSelect = document.getElementById("level");
+            const levelModifSelect = document.getElementById("modifyLevel");
+  
+            // Nettoyer les options existantes sauf le premier
+            levelSelect.innerHTML = '<option value="">Sélectionne un niveau</option>';
+            levelModifSelect.innerHTML = '<option value="">Sélectionne un niveau</option>';
+  
+            // Remplir les deux select avec les niveaux
+            response.data.forEach(level => {
+              const option = new Option(level.name, level.id);
+              levelSelect.appendChild(option);
+  
+              const modifOption = new Option(level.name, level.id);
+              levelModifSelect.appendChild(modifOption);
+            });
+          })
+          .catch(error => {
+            console.error("Erreur lors du chargement des niveaux :", error);
+            showNotification("error", "Erreur lors du chargement des niveaux.", "Action échouée");
+          });
+        }
+  
+        loadLevelsSelectOptions();
+  
+
 function loadCourses() {
 const token = localStorage.getItem("token");
 axios.get(CONFIG.BASE_URL + '/api/courses/', {
